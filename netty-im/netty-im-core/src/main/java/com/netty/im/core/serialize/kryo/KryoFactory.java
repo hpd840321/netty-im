@@ -35,7 +35,7 @@ public abstract class KryoFactory {
       
         Kryo kryo = new Kryo();
         kryo.setRegistrationRequired(false);
-        kryo.register(Message.class);
+        kryo.register(Message.class,12312);
         kryo.register(Arrays.asList("").getClass(), new ArraysAsListSerializer());
         kryo.register(GregorianCalendar.class, new GregorianCalendarSerializer());
         kryo.register(InvocationHandler.class, new JdkProxySerializer());

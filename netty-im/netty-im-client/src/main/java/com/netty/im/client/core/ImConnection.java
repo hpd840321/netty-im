@@ -61,10 +61,13 @@ public class ImConnection {
                 	ch.pipeline().addLast("encoder",  
                             new ProtobufEncoder());
                 	ch.pipeline().addLast(new ClientPoHandlerProto());*/
-					ch.pipeline().addLast("decoder", new KryoDecoder());
+
+
+
 					ch.pipeline().addLast("encoder", new KryoEncoder());
+					ch.pipeline().addLast("decoder", new KryoDecoder());
 					ch.pipeline().addLast(new ClientPoHandler());
-					
+
 					//字符串传输数据
 					/*ch.pipeline().addLast("decoder", new StringDecoder());
 					ch.pipeline().addLast("encoder", new StringEncoder());

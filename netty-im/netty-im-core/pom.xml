@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>de.javakaffee</groupId>
 			<artifactId>kryo-serializers</artifactId>
-			<version>0.26</version>
+			<version>0.45</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->

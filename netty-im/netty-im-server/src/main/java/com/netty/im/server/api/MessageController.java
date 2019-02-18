@@ -30,7 +30,7 @@ public class MessageController {
 	public Object pushAllMessage(String content) {
 		ConnectionPool.getChannels().forEach(c -> {
 			Message message = new Message();
-			message.setContent(content);
+			message.setContent("test");
 			c.writeAndFlush(message);
 		});
 		return "success";
