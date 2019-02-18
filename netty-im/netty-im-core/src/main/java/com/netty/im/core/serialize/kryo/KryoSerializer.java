@@ -19,7 +19,7 @@ public class KryoSerializer {
 	public static void serialize(Object object, ByteBuf out) {
 		Kryo kryo = factory.getKryo();
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Output output = new Output(baos);
+        Output output = new Output(baos,100000);
         kryo.writeClassAndObject(output, object);
         output.flush();
         output.close();

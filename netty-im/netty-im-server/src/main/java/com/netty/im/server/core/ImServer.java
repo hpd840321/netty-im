@@ -1,6 +1,9 @@
 package com.netty.im.server.core;
 
+import com.netty.im.core.message.KryoDecoder;
+import com.netty.im.core.message.KryoEncoder;
 import com.netty.im.core.message.MessageProto;
+import com.netty.im.server.handler.ServerPoHandler;
 import com.netty.im.server.handler.ServerPoHandlerProto;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -45,16 +48,17 @@ public class ImServer {
                     			)
                     	);
                     	ch.pipeline().addLast(new ObjectEncoder());*/
-                    	/*ch.pipeline().addLast("decoder", new KryoDecoder());
-    					ch.pipeline().addLast("encoder", new KryoEncoder());*/
-                    	
+                    	ch.pipeline().addLast("decoder", new KryoDecoder());
+    					ch.pipeline().addLast("encoder", new KryoEncoder());
+						ch.pipeline().addLast(new ServerPoHandler());
                     	// 实体类传输数据，protobuf序列化
-                    	ch.pipeline().addLast("decoder",  
+                    /*	ch.pipeline().addLast("decoder",
                                 new ProtobufDecoder(MessageProto.Message.getDefaultInstance()));  
-                    	ch.pipeline().addLast("encoder",  
-                                new ProtobufEncoder());  
-                    	ch.pipeline().addLast(new ServerPoHandlerProto());
+                    	ch.pipeline().addLast("encoder",
+                                new ProtobufEncoder());  */
+
                     	//ch.pipeline().addLast(new ServerPoHandler());
+
                     	//字符串传输数据
     					/*ch.pipeline().addLast("decoder", new StringDecoder());
     					ch.pipeline().addLast("encoder", new StringEncoder());

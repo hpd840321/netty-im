@@ -2,7 +2,10 @@ package com.netty.im.client.core;
 
 import java.util.concurrent.TimeUnit;
 
+import com.netty.im.client.handler.ClientPoHandler;
 import com.netty.im.client.handler.ClientPoHandlerProto;
+import com.netty.im.core.message.KryoDecoder;
+import com.netty.im.core.message.KryoEncoder;
 import com.netty.im.core.message.MessageProto;
 
 import io.netty.bootstrap.Bootstrap;
@@ -52,15 +55,15 @@ public class ImConnection {
                 	);
                 	ch.pipeline().addLast(new ObjectEncoder());*/
 					// 实体类传输数据，protobuf序列化
-					ch.pipeline().addLast("ping", new IdleStateHandler(60, 20, 60 * 10, TimeUnit.SECONDS));
+				/*	ch.pipeline().addLast("ping", new IdleStateHandler(60, 20, 60 * 10, TimeUnit.SECONDS));
                 	ch.pipeline().addLast("decoder",  
                             new ProtobufDecoder(MessageProto.Message.getDefaultInstance()));  
                 	ch.pipeline().addLast("encoder",  
-                            new ProtobufEncoder());  
-                	ch.pipeline().addLast(new ClientPoHandlerProto());
-					/*ch.pipeline().addLast("decoder", new KryoDecoder());
-					ch.pipeline().addLast("encoder", new KryoEncoder());*/
-					//ch.pipeline().addLast(new ClientPoHandler());
+                            new ProtobufEncoder());
+                	ch.pipeline().addLast(new ClientPoHandlerProto());*/
+					ch.pipeline().addLast("decoder", new KryoDecoder());
+					ch.pipeline().addLast("encoder", new KryoEncoder());
+					ch.pipeline().addLast(new ClientPoHandler());
 					
 					//字符串传输数据
 					/*ch.pipeline().addLast("decoder", new StringDecoder());

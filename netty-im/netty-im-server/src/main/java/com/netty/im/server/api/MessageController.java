@@ -31,7 +31,7 @@ public class MessageController {
 		ConnectionPool.getChannels().forEach(c -> {
 			Message message = new Message();
 			message.setContent(content);
-			c.writeAndFlush(content);
+			c.writeAndFlush(message);
 		});
 		return "success";
 	}

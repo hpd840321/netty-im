@@ -1,5 +1,7 @@
 package com.netty.im.server.http;
 
+import com.netty.im.core.message.KryoDecoder;
+import com.netty.im.core.message.KryoEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -32,8 +34,8 @@ public class NettyHttpServer {
 					@Override
 					public void initChannel(SocketChannel ch) throws Exception {
 						ch.pipeline().addLast(
-								new HttpResponseEncoder(),
-								new HttpRequestDecoder(),
+								new KryoDecoder(),
+								new KryoEncoder(),
 								new NettyHttpServerHandler());
 					}
 				}).option(ChannelOption.SO_BACKLOG, 128)
