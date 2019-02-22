@@ -15,7 +15,7 @@ public class ServerPoHandler extends ChannelInboundHandlerAdapter {
 		if (ConnectionPool.getChannel(ctx.channel().remoteAddress().toString()) == null) {
 			ConnectionPool.putChannel(ctx.channel().remoteAddress().toString(), ctx);
 		}
-
+ctx.flush();
 	}
 
 	@Override

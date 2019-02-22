@@ -8,6 +8,16 @@ public class Message implements Serializable {
 	private String content;
 	// 消息类型（0：业务消息  1：心跳消息）
 	private int type;
+
+	public byte[] getPicData() {
+		return picData;
+	}
+
+	public void setPicData(byte[] picData) {
+		this.picData = picData;
+	}
+
+	private byte[]  picData;
 	
 	public int getType() {
 		return type;
