@@ -1,5 +1,6 @@
 package com.netty.im.server.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +27,15 @@ public class MessageController {
 	@GetMapping("/push")
 	@ResponseBody
 	public Object pushAllMessage(String content) {
-		ConnectionPool.getChannels().forEach(c -> {
+	//	ConnectionPool.getChannels().forEach(c -> {
+		List<ChannelHandlerContext> list =ConnectionPool.getChannels();
+		if(list!=null&&list.size()>0) {
+			ChannelHandlerContext c=	list.get(0);
 			Message message = new Message();
-
 			message.setContent("test");
 			c.writeAndFlush(message);
-		});
+		}
+	//	});
 		return "success";
 	}
 	
