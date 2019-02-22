@@ -12,7 +12,7 @@ import com.netty.im.server.core.ImServer;
 public class ImServerApp {
 	public static void main(String[] args) {
 		int port = 2222;
-		new Thread(() -> {
+	new Thread(() -> {
 			new ImServer().run(port);
 		}).start();
 		SpringApplication.run(ImServerApp.class, args);

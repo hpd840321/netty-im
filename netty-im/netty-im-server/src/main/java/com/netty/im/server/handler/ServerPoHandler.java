@@ -9,14 +9,21 @@ import org.slf4j.LoggerFactory;
 
 public class ServerPoHandler extends ChannelInboundHandlerAdapter {
 	private static Logger logger= LoggerFactory.getLogger(ServerPoHandler.class);
+
+	@Override
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		if (ConnectionPool.getChannel(ctx.channel().remoteAddress().toString()) == null) {
+			ConnectionPool.putChannel(ctx.channel().remoteAddress().toString(), ctx);
+		}
+
+	}
+
 	@Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
 	    System.out.println("channelRead");
 	    logger.info("channelRead");
 		//Message message = (Message) msg;
-		if (ConnectionPool.getChannel(ctx.channel().remoteAddress().toString()) == null) {
-			ConnectionPool.putChannel(ctx.channel().remoteAddress().toString(), ctx);
-		}
+
 		//System.err.println("server:" + message.getId());
 		ctx.writeAndFlush(msg);
     }

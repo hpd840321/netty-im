@@ -50,8 +50,9 @@ public class ImServer {
                     	ch.pipeline().addLast(new ObjectEncoder());*/
 
 						ch.pipeline().addLast("encoder", new KryoEncoder());
-						ch.pipeline().addLast(new ServerPoHandler());
 						ch.pipeline().addLast("decoder", new KryoDecoder());
+						ch.pipeline().addLast(new ServerPoHandler());
+
 
 
                     	// 实体类传输数据，protobuf序列化
